@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, roc_auc_score, recall_score, precision_score
-from xgboost import XGBClassifier
+
 import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
@@ -62,16 +62,12 @@ def load_and_train():
         X, y, test_size=0.2, random_state=42, stratify=y)
 
     # Using class_weight='balanced' instead of SMOTE
-    models = {
+       models = {
         "Logistic Regression": LogisticRegression(
             max_iter=1000, random_state=42, class_weight="balanced"),
         "Random Forest": RandomForestClassifier(
             n_estimators=100, random_state=42,
             class_weight="balanced", n_jobs=-1),
-        "XGBoost": XGBClassifier(
-            n_estimators=100, random_state=42,
-            scale_pos_weight=int((y==0).sum()/(y==1).sum()),
-            eval_metric="logloss", verbosity=0)
     }
 
     results = {}
