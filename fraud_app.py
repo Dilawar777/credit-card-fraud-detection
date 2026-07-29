@@ -247,9 +247,9 @@ with tab2:
             [legit["Amount_Scaled"], fraud["Amount_Scaled"]],
             labels=["Legit","Fraud"], patch_artist=True,
             boxprops=dict(facecolor="#1A56A0", alpha=0.5),
-            medianprops=dict(color="#DC2626", linewidth=2.5),
-            flierprops=dict(marker="o", markersize=2, alpha=0.3)
+            medianprops=dict(color="#DC2626", linewidth=2.5)
         )
+     
         ax.set_title("Amount Spread by Class", fontweight="bold")
         ax.set_ylabel("Scaled Amount")
         for s in ["top","right"]: ax.spines[s].set_visible(False)
