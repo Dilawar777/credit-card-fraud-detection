@@ -177,9 +177,6 @@ with tab1:
             else:
                 st.error("🔴 High Risk — block and investigate")
 
-# ════════════════════════════════════════════════════════
-# TAB 2 — DATA INSIGHTS
-# ════════════════════════════════════════════════════════
 with tab2:
     with st.spinner("Loading dataset insights..."):
         df = load_data()
@@ -243,12 +240,12 @@ with tab2:
 
     with d2:
         fig, ax = plt.subplots(figsize=(7, 4))
-        ax.boxplot(
-            [legit["Amount_Scaled"], fraud["Amount_Scaled"]],
-            labels=["Legit","Fraud"], patch_artist=True,
-            boxprops=dict(facecolor="#1A56A0", alpha=0.5),
-            medianprops=dict(color="#DC2626", linewidth=2.5)
-        )
+        ax.hist(legit["Amount_Scaled"], bins=40, color="#1A56A0", alpha=0.6, label="Legit", density=True)
+        ax.hist(fraud["Amount_Scaled"], bins=40, color="#DC2626", alpha=0.6, label="Fraud", density=True)
+        ax.legend()
+        ax.set_title("Amount Distribution by Class", fontweight="bold")
+        
+  
      
         ax.set_title("Amount Spread by Class", fontweight="bold")
         ax.set_ylabel("Scaled Amount")
@@ -303,9 +300,6 @@ with tab2:
                  fontsize=14, fontweight="bold")
     plt.tight_layout(); st.pyplot(fig); plt.close()
 
-# ════════════════════════════════════════════════════════
-# TAB 3 — MODEL PERFORMANCE
-# ════════════════════════════════════════════════════════
 with tab3:
     st.markdown('<p class="section">Model Metrics</p>', unsafe_allow_html=True)
 
